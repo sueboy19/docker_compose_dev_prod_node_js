@@ -83,11 +83,32 @@ root
 
 ### Production 環境
 
+Production 環境支援兩階段部署流程：
+
+#### 第一階段：構建和匯出（在開發環境）
 1. 在專案根目錄運行：
+   ```
+   ./prod-build.bat
+   ```
+   或
+   ```
+   ./prod-build.sh
+   ```
+   這將構建應用、將構建文件複製到 prod 目錄，並建立 Docker images 並將其匯出為 tar 檔案 (myapp-backend-prod.tar 和 myapp-frontend-prod.tar)。
+
+#### 第二階段：正式機部署
+1. 將整個 `prod` 目錄複製到正式機環境
+2. 在 `prod` 目錄中運行：
    ```
    ./prod-up.bat
    ```
-2. 應用將在以下地址運行：
+   或 Linux 系統：
+   ```
+   ./prod-up.sh
+   ```
+   這將載入 Docker images 並啟動服務。
+
+3. 應用將在以下地址運行：
    - 前端: http://localhost:5001
    - 後端: http://localhost:5000
    - 數據庫: localhost:5432 (PostgreSQL)

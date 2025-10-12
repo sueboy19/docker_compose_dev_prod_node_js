@@ -52,6 +52,9 @@ temp/
 *.so
 *.dylib
 
+# Exported Docker images
+*.tar
+
 # Environment specific files
 .env.local
 .env.*.local
@@ -61,3 +64,5 @@ temp/
 !dev-up.sh
 !stage-up.sh
 !prod-up.sh
+!prod-build.sh
+!prod/prod-up.sh

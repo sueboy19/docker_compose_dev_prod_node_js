@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile.prod
+    image: myapp-backend:prod
     container_name: backend-prod
     ports:
       - "3000:3000"
@@ -24,9 +22,7 @@ services:
       start_period: 40s
 
   frontend:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile.prod
+    image: myapp-frontend:prod
     container_name: frontend-prod
     ports:
       - "3001:80"
@@ -34,6 +30,22 @@ services:
       - NODE_ENV=production
     depends_on:
       - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # PostgreSQL 服務 (生產環境)
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-prod
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
     restart: unless-stopped

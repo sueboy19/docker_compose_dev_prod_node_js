@@ -11,6 +11,6 @@ if exist docker-compose.yml (
     echo Frontend will be accessible at http://localhost:3000
     echo Backend API will be accessible at http://localhost:3001
 ) else (
-    echo Error: docker-compose.yml file not found
+    echo. Error: docker-compose.yml file not found
     pause
 )

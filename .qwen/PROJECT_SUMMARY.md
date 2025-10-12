@@ -7,7 +7,8 @@
 - 專案結構包含 backend 和 frontend 目錄，各自有 src 子目錄
 - 開發環境使用根目錄的 docker-compose.yml，Stage 和 Production 環境各自有獨立的目錄和配置文件
 - 創建了 stage 和 prod 目錄，每個目錄內包含對應的 backend/dist 和 frontend/dist 目錄，用於預構建文件部署
-- 實現了環境管理腳本 (dev-up.bat, stage-up.bat, prod-up.bat, dev-up.sh, stage-up.sh, prod-up.sh) - 同時支援 Windows 和 Linux 版本
+- 實現了環境管理腳本 (dev-up.bat, stage-up.bat, prod-build.bat, dev-up.sh, stage-up.sh, prod-build.sh) - 同時支援 Windows 和 Linux 版本
+- Production 環境部署腳本 (prod/prod-up.bat, prod/prod-up.sh) 專門用於正式機部署
 - 所有環境都配置了 Dockerfile 和 .env 文件
 - 後端使用 NestJS 框架，前端使用 React 框架
 - Production 環境額外包含 PostgreSQL 和 Redis 服務
@@ -26,6 +27,9 @@
 - Docker 構建上下文限制：Docker 不允許從構建上下文（stage 或 prod 目錄）之外複製文件
 - stage 和 prod 目錄中的 nginx.conf 是臨時複製的文件，不應被 Git 追蹤
 - 構建腳本會複製 package.json、package-lock.json、dist 目錄和 nginx.conf 到 stage 和 prod 目錄
+- Production 環境支援 Docker image 匯出/載入功能，便於在不同環境中部署
+- 兩階段部署流程：第一階段 (prod-build) 進行構建和匯出，第二階段 (prod/prod-up) 進行正式機部署
+- 匯出的 Docker images (.tar 檔案) 不會被 Git 追蹤，需單獨複製到正式機環境
 
 ## Recent Actions
 - [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
@@ -95,6 +99,16 @@
 29. [DONE] 修正 Dockerfile 中的 COPY 路徑，確保正確引用構建上下文中的文件
 30. [DONE] 修正構建腳本，複製所有必需文件到 stage 和 prod 目錄
 31. [DONE] 修正 .gitignore 配置，確保臨時複製的文件不被 Git 追蹤
+32. [DONE] 修改 Production 的 docker-compose.yml 以支援從匯出的 image 載入
+33. [DONE] 創建用於匯出 Docker image 的腳本
+34. [DONE] 創建用於載入 Docker image 的腳本
+35. [DONE] 更新 prod-up.sh 和 prod-up.bat 以使用新的匯出/載入功能
+36. [DONE] 創建 prod/prod-up.bat 用於正式機部署
+37. [DONE] 修正根目錄 prod-up.sh/bat 專用於構建和匯出
+38. [DONE] 更新部署文件以反映新的兩階段部署流程
+39. [DONE] 重新命名根目錄的構建腳本為 prod-build.bat/sh 以更準確反映其用途
+40. [DONE] 為 prod 目錄創建 Linux 版本的 prod-up.sh 部署腳本
+41. [DONE] 更新 .gitignore 以排除 .tar 檔案，確保不會被 Git 追蹤
 
 ---
 
