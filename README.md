@@ -78,8 +78,8 @@ root
    ./stage-up.bat
    ```
 2. 應用將在以下地址運行：
-   - 前端: http://localhost:4001
-   - 後端: http://localhost:4000
+   - 前端: http://localhost:3001
+   - 後端: http://localhost:3000
 
 ### Production 環境
 
@@ -109,8 +109,8 @@ Production 環境支援兩階段部署流程：
    這將載入 Docker images 並啟動服務。
 
 3. 應用將在以下地址運行：
-   - 前端: http://localhost:5001
-   - 後端: http://localhost:5000
+   - 前端: http://localhost:3001
+   - 後端: http://localhost:3000
    - 數據庫: localhost:5432 (PostgreSQL)
    - Redis: localhost:6379
 

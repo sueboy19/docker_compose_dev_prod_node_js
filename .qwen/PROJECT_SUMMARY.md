@@ -31,6 +31,7 @@
 - 兩階段部署流程：第一階段 (prod-build) 進行構建和匯出，第二階段 (prod/prod-up) 進行正式機部署
 - 匯出的 Docker images (.tar 檔案) 不會被 Git 追蹤，需單獨複製到正式機環境
 - Windows 批處理檔案不能包含中文字符，否則會導致語法解析錯誤
+- 所有環境的端口配置統一為前端 3001、後端 3000，與之前 README.md 中錯誤的端口信息不同
 
 ## Recent Actions
 - [DONE] 完成了 Production 環境的 Docker image 匯出/載入功能
@@ -40,6 +41,7 @@
 - [DONE] 為正式機部署創建了 Linux 版本的腳本 (prod/prod-up.sh)
 - [DONE] 更新了 .gitignore 配置以排除 .tar 檔案，確保不會被 Git 追蹤
 - [DONE] 修正了 Windows 批處理檔案中的 `echo` 語句問題，使用 `echo.` 語法避免解析錯誤
+- [DONE] 修正了 README.md 中的端口配置信息，確保與實際的 docker-compose.yml 文件一致
 
 ## Current Plan
 1. [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
@@ -83,8 +85,9 @@
 39. [DONE] 重新命名根目錄的構建腳本為 prod-build.bat/sh 以更準確反映其用途
 40. [DONE] 為 prod 目錄創建 Linux 版本的 prod-up.sh 部署腳本
 41. [DONE] 更新 .gitignore 以排除 .tar 檔案，確保不會被 Git 追蹤
+42. [DONE] 修正 README.md 中的端口信息，確保與實際配置一致
 
 ---
 
 ## Summary Metadata
-**Update time**: 2025-10-12T10:10:06.945Z 
+**Update time**: 2025-10-15T13:51:27.710Z 
