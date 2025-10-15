@@ -22,7 +22,7 @@
 - Windows 批處理文件使用 chcp 65001 命令設定 UTF-8 編碼，但實際腳本內容使用英文字符以確保執行穩定性
 - 開發環境需要使用 Dockerfile.dev 並配置開發模式 (nodemon, start:dev 等)
 - 前端在開發環境需要正確代理 API 請求到後端服務
-- Stage 和 Production 環境使用預構建文件的 Dockerfile（Dockerfile.stage 和 Dockerfile.prod），構建後的文件複製到 stage/prod 目錄中
+- Stage 和 Production 環境使用預構建文件的 Dockerfile（Dockerfile.stage 和 Dockerfile.prod），構建後的文件複製到 stage 和 prod 目錄中
 - 部署簡化策略：構建後的文件複製到 stage 和 prod 目錄中，只需複製整個目錄到目標主機即可部署
 - Docker 構建上下文限制：Docker 不允許從構建上下文（stage 或 prod 目錄）之外複製文件
 - stage 和 prod 目錄中的 nginx.conf 是臨時複製的文件，不應被 Git 追蹤
@@ -31,7 +31,8 @@
 - 兩階段部署流程：第一階段 (prod-build) 進行構建和匯出，第二階段 (prod/prod-up) 進行正式機部署
 - 匯出的 Docker images (.tar 檔案) 不會被 Git 追蹤，需單獨複製到正式機環境
 - Windows 批處理檔案不能包含中文字符，否則會導致語法解析錯誤
-- 所有環境的端口配置統一為前端 3001、後端 3000，與之前 README.md 中錯誤的端口信息不同
+- 所有服務使用統一的端口配置：前端 http://localhost:3001，後端 http://localhost:3000
+- 已在 Dockerfile 中添加安全補丁指令以解決高危漏洞
 
 ## Recent Actions
 - [DONE] 完成了 Production 環境的 Docker image 匯出/載入功能
@@ -41,7 +42,8 @@
 - [DONE] 為正式機部署創建了 Linux 版本的腳本 (prod/prod-up.sh)
 - [DONE] 更新了 .gitignore 配置以排除 .tar 檔案，確保不會被 Git 追蹤
 - [DONE] 修正了 Windows 批處理檔案中的 `echo` 語句問題，使用 `echo.` 語法避免解析錯誤
-- [DONE] 修正了 README.md 中的端口配置信息，確保與實際的 docker-compose.yml 文件一致
+- [DONE] 修正了 README.md 中的端口信息，使其與實際的 docker-compose.yml 配置匹配
+- [DONE] 更新了所有使用 node:20-alpine 的 Dockerfile，添加安全補丁指令以解決高危漏洞
 
 ## Current Plan
 1. [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
@@ -85,9 +87,10 @@
 39. [DONE] 重新命名根目錄的構建腳本為 prod-build.bat/sh 以更準確反映其用途
 40. [DONE] 為 prod 目錄創建 Linux 版本的 prod-up.sh 部署腳本
 41. [DONE] 更新 .gitignore 以排除 .tar 檔案，確保不會被 Git 追蹤
-42. [DONE] 修正 README.md 中的端口信息，確保與實際配置一致
+42. [DONE] 修正 README.md 中的端口配置信息，使其與實際 docker-compose 配置一致
+43. [DONE] 更新 Dockerfile 以解決安全漏洞問題
 
 ---
 
 ## Summary Metadata
-**Update time**: 2025-10-15T13:51:27.710Z 
+**Update time**: 2025-10-15T14:02:12.951Z 
