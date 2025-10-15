@@ -1,7 +1,7 @@
 # Project Summary
 
 ## Overall Goal
-建立一個基於 NestJS 和 React 的 Docker Compose 開發和生產環境，包含後端、前端以及開發、Stage 和 Production 三種部署環境的配置，並提供相應的腳本和環境變數管理，支持簡化部署操作。
+建立一個基於 NestJS 和 React 的 Docker Compose 開發和生產環境，包含後端、前端以及開發、Stage 和 Production 三種部署環境的配置，並提供相應的腳本和環境變數管理，支持簡化部署操作，同時確保安全性和代碼質量。
 
 ## Key Knowledge
 - 專案結構包含 backend 和 frontend 目錄，各自有 src 子目錄
@@ -31,8 +31,8 @@
 - 兩階段部署流程：第一階段 (prod-build) 進行構建和匯出，第二階段 (prod/prod-up) 進行正式機部署
 - 匯出的 Docker images (.tar 檔案) 不會被 Git 追蹤，需單獨複製到正式機環境
 - Windows 批處理檔案不能包含中文字符，否則會導致語法解析錯誤
-- 所有服務使用統一的端口配置：前端 http://localhost:3001，後端 http://localhost:3000
-- 已在 Dockerfile 中添加安全補丁指令以解決高危漏洞
+- 端口分配：所有環境前端使用 3001 端口，後端使用 3000 端口
+- Dockerfile 已更新使用更安全的 node:20-alpine3.19 基礎鏡像
 
 ## Recent Actions
 - [DONE] 完成了 Production 環境的 Docker image 匯出/載入功能
@@ -42,8 +42,8 @@
 - [DONE] 為正式機部署創建了 Linux 版本的腳本 (prod/prod-up.sh)
 - [DONE] 更新了 .gitignore 配置以排除 .tar 檔案，確保不會被 Git 追蹤
 - [DONE] 修正了 Windows 批處理檔案中的 `echo` 語句問題，使用 `echo.` 語法避免解析錯誤
-- [DONE] 修正了 README.md 中的端口信息，使其與實際的 docker-compose.yml 配置匹配
-- [DONE] 更新了所有使用 node:20-alpine 的 Dockerfile，添加安全補丁指令以解決高危漏洞
+- [DONE] 修正了 README.md 中的端口信息，使其與實際的 docker-compose.yml 配置保持一致
+- [DONE] 更新了所有 Node.js Dockerfile 使用更安全的 node:20-alpine3.19 基礎鏡像以解決安全漏洞
 
 ## Current Plan
 1. [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
@@ -87,10 +87,10 @@
 39. [DONE] 重新命名根目錄的構建腳本為 prod-build.bat/sh 以更準確反映其用途
 40. [DONE] 為 prod 目錄創建 Linux 版本的 prod-up.sh 部署腳本
 41. [DONE] 更新 .gitignore 以排除 .tar 檔案，確保不會被 Git 追蹤
-42. [DONE] 修正 README.md 中的端口配置信息，使其與實際 docker-compose 配置一致
-43. [DONE] 更新 Dockerfile 以解決安全漏洞問題
+42. [DONE] 修正 README.md 中的端口信息，使其與實際配置一致
+43. [DONE] 更新 Dockerfile 基礎鏡像至更安全的 node:20-alpine3.19 以解決安全漏洞
 
 ---
 
 ## Summary Metadata
-**Update time**: 2025-10-15T14:02:12.951Z 
+**Update time**: 2025-10-15T14:05:55.205Z 
