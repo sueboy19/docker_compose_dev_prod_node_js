@@ -30,42 +30,16 @@
 - Production 環境支援 Docker image 匯出/載入功能，便於在不同環境中部署
 - 兩階段部署流程：第一階段 (prod-build) 進行構建和匯出，第二階段 (prod/prod-up) 進行正式機部署
 - 匯出的 Docker images (.tar 檔案) 不會被 Git 追蹤，需單獨複製到正式機環境
+- Windows 批處理檔案不能包含中文字符，否則會導致語法解析錯誤
 
 ## Recent Actions
-- [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
-- [DONE] 創建 todos.md 來記錄工作進度
-- [DONE] 創建後端基本結構 (NestJS) 包含所有必要文件
-- [DONE] 創建前端基本結構 (React) 包含所有必要文件
-- [DONE] 創建開發環境的 Docker Compose 設定
-- [DONE] 創建 Stage 環境的 Docker Compose 設定
-- [DONE] 創建 Production 環境的 Docker Compose 設定
-- [DONE] 創建環境變數文件 (.env, stage/.env, prod/.env)
-- [DONE] 創建環境管理腳本 (dev-up.bat, stage-up.bat, prod-up.bat, dev-up.sh, stage-up.sh, prod-up.sh)
-- [DONE] 創建專案說明文件 (README.md)
-- [DONE] 創建 .env.sample 樣本文件 (根目錄、prod、stage)
-- [DONE] 更新 .gitignore 文件配置
-- [DONE] 更新 Windows 腳本使其與 Linux 版本保持一致，自動構建
-- [DONE] 將所有腳本的提示信息改為中文（後因解析錯誤改回英文）
-- [DONE] 將所有 Dockerfile 更新為使用 Node.js 20 版本
-- [DONE] 解決了 package-lock.json 依賴問題，使 Docker 容器能成功構建
-- [DONE] 修復了 Windows 批處理文件的錯誤並使用英文字符
-- [DONE] 成功啟動了開發環境，包含前端和後端容器
-- [DONE] 修復 dev-up.bat 和 dev-up.sh 的內容一致性問題
-- [DONE] 為開發環境創建了 Dockerfile.dev 文件
-- [DONE] 統一了 .env 和 .env.sample 文件的內容
-- [DONE] 解決了前端訪問後端 API 返回 HTML 頁面的問題，通過添加 CORS 支援和正確的 API 請求路徑
-- [DONE] 調整 bat 檔案編碼處理，加入 chcp 65001 命令，但由於中文字符仍導致解析錯誤，最終改回英文字符以確保腳本正確執行
-- [DONE] 修復 stage-up.bat 執行問題，創建 stage 目錄專用的 Dockerfile 以正確使用預構建文件
-- [DONE] 創建 prod 目錄專用的 Dockerfile，使部署時能使用預先構建的文件
-- [DONE] 完善 stage 和 prod 目錄的 Dockerfile 配置，支持簡化部署操作
-- [DONE] 修復 stage-up.bat 和 prod-up.bat 中的構建及複製邏輯，加入錯誤處理和驗證機制，確保構建文件能正確複製到 stage/prod 目錄
-- [DONE] 修復 Dockerfile 中 nginx.conf 路徑問題，確保 Docker 能正確找到 nginx 配置文件
-- [DONE] 移除 backend 和 frontend 根目錄中多余的 Dockerfile，保留 Dockerfile.dev 用於開發
-- [DONE] 修正 stage 和 prod 的 Dockerfile 中的 COPY 路徑問題，確保正確引用構建上下文中的文件
-- [DONE] 修正構建腳本，使 nginx.conf 複製到 stage 和 prod 根目錄，而非子目錄
-- [DONE] 修正構建腳本，複製 package.json 和 package-lock.json 到 stage 和 prod 的 backend 目錄
-- [DONE] 修正 .gitignore 配置，移除對臨時複製的 nginx.conf 文件的追蹤
-- [DONE] 更新 README.md 以反映新的目錄結構和配置
+- [DONE] 完成了 Production 環境的 Docker image 匯出/載入功能
+- [DONE] 修正了所有批處理檔案中的中文字符問題，改為使用英文字符
+- [DONE] 重命名了構建腳本為 `prod-build.bat/sh` 以更準確反映其用途
+- [DONE] 創建了完整的兩階段部署流程：構建階段 (prod-build) 和部署階段 (prod/prod-up)
+- [DONE] 為正式機部署創建了 Linux 版本的腳本 (prod/prod-up.sh)
+- [DONE] 更新了 .gitignore 配置以排除 .tar 檔案，確保不會被 Git 追蹤
+- [DONE] 修正了 Windows 批處理檔案中的 `echo` 語句問題，使用 `echo.` 語法避免解析錯誤
 
 ## Current Plan
 1. [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
@@ -113,4 +87,4 @@
 ---
 
 ## Summary Metadata
-**Update time**: 2025-10-12T03:45:50.372Z 
+**Update time**: 2025-10-12T10:10:06.945Z 
