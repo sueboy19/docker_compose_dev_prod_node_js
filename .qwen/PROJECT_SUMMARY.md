@@ -33,6 +33,7 @@
 - Windows 批處理檔案不能包含中文字符，否則會導致語法解析錯誤
 - 端口分配：所有環境前端使用 3001 端口，後端使用 3000 端口
 - Dockerfile 已更新使用更安全的 node:20-alpine3.19 基礎鏡像
+- 後端已實現健康檢查端點 /health，支持生產環境的健康檢查
 
 ## Recent Actions
 - [DONE] 完成了 Production 環境的 Docker image 匯出/載入功能
@@ -44,6 +45,9 @@
 - [DONE] 修正了 Windows 批處理檔案中的 `echo` 語句問題，使用 `echo.` 語法避免解析錯誤
 - [DONE] 修正了 README.md 中的端口信息，使其與實際的 docker-compose.yml 配置保持一致
 - [DONE] 更新了所有 Node.js Dockerfile 使用更安全的 node:20-alpine3.19 基礎鏡像以解決安全漏洞
+- [DONE] 修復了所有腳本中的端口信息，確保前端為 3001，後端為 3000
+- [DONE] 完成了 prod-up.sh 腳本的內容，使其與 Windows 版本功能一致
+- [DONE] 確認後端已實現健康檢查端點 /health，支持生產環境的健康檢查
 
 ## Current Plan
 1. [DONE] 創建專案目錄結構 (backend, frontend, stage, prod)
@@ -89,8 +93,11 @@
 41. [DONE] 更新 .gitignore 以排除 .tar 檔案，確保不會被 Git 追蹤
 42. [DONE] 修正 README.md 中的端口信息，使其與實際配置一致
 43. [DONE] 更新 Dockerfile 基礎鏡像至更安全的 node:20-alpine3.19 以解決安全漏洞
+44. [DONE] 修正所有腳本中的端口信息，確保前端為 3001，後端為 3000
+45. [DONE] 完成了 prod-up.sh 腳本的內容，使其與 Windows 版本功能一致
+46. [DONE] 確認後端已實現健康檢查端點 /health，支持生產環境的健康檢查
 
 ---
 
 ## Summary Metadata
-**Update time**: 2025-10-15T14:05:55.205Z 
+**Update time**: 2025-10-15T14:30:00.000Z 

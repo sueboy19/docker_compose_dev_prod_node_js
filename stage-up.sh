@@ -33,5 +33,5 @@ cd ./stage
 docker-compose up --build -d
 
 echo "Stage 環境現在正在運行！"
-echo "前端將可在 http://localhost:3000 訪問"
-echo "後端 API 將可在 http://localhost:3001 訪問"
+echo "前端將可在 http://localhost:3001 訪問"
+echo "後端 API 將可在 http://localhost:3000 訪問"

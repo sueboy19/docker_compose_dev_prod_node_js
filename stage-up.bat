@@ -119,5 +119,5 @@ cd /d "%~dp0stage"
 docker-compose up --build -d
 
 echo Stage environment is now running!
-echo Frontend will be accessible at http://localhost:3000
-echo Backend API will be accessible at http://localhost:3001
+echo Frontend will be accessible at http://localhost:3001
+echo Backend API will be accessible at http://localhost:3000
